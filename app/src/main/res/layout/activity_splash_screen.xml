@@ -1,0 +1,12 @@
+<!-- res/layout/activity_splash.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/gifImageView"
+        android:layout_width="259dp"
+        android:layout_height="397dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_launcher_foreground" />
+</RelativeLayout>
