@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="İlanlarım"
-        android:icon="@drawable/baseline_person_24"/>
+        android:icon="@drawable/baseline_person_24"
+        />
     <item
         android:id="@+id/ilanlar"
         android:layout_width="wrap_content"
