@@ -13,12 +13,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        replaceFragment(Homepage())
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.->replaceFragment(Homepage())
+                R.id.anasayfa->replaceFragment(Homepage())
+                R.id.profil->replaceFragment(Profil())
+                R.id.ilanlarim->replaceFragment(Ilanlarim())
+
+                else->{
+
+
+
+                }
+
             }
+            true
         }
 
     }
