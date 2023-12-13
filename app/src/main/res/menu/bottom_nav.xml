@@ -12,12 +12,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="İlanlarım"
-        android:icon="@drawable/baseline_person_24"
+        android:icon="@drawable/baseline_auto_awesome_motion_24"
         />
     <item
-        android:id="@+id/ilanlar"
+        android:id="@+id/profil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="İlanlar"
-        android:icon="@drawable/baseline_auto_awesome_motion_24"/>
+        android:title="Profil"
+        android:icon="@drawable/baseline_person_24"/>
+
 </menu>
