@@ -1,0 +1,13 @@
+<!-- res/drawable/edittextform.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:bottom="-2dp"> <!-- Çizginin yüksekliği, ihtiyaca göre ayarlanabilir -->
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+    <item android:bottom="-2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/brandColor" />
+        </shape>
+    </item>
+</layer-list>

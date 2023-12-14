@@ -1,5 +1,6 @@
 package com.example.logisticlink
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,10 +14,15 @@ class ChooseScreen : AppCompatActivity() {
         binding=ActivityChooseScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        fun onAvatarClick(view: View) {
-            when (view.id) {
-                R.id.carrierAvatar -> showToast("Taşıyıcı avatarına tıklandı")
-                R.id.customerAvatar -> showToast("Müşteri avatarına tıklandı")
-            }
-        }    }
+    binding.carrierAvatar.setOnClickListener{
+
+        val intent = Intent(this, CarrierLoginScreen::class.java)
+        startActivity(intent)
+    }
+        binding.customerAvatar.setOnClickListener{
+            val intent = Intent(this, CustomerLoginScreen::class.java)
+            startActivity(intent)
+        }
+
+    }
 }

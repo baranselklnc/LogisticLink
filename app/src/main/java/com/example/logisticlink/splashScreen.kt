@@ -23,11 +23,11 @@ class splashScreen : AppCompatActivity() {
 
         object : CountDownTimer(SPLASH_DELAY, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                // Geri sayım sırasında her saniye bir şeyler yapabilirsiniz
+
             }
 
             override fun onFinish() {
-                val mainIntent = Intent(this@splashScreen, MainActivity::class.java)
+                val mainIntent = Intent(this@splashScreen, ChooseScreen::class.java)
                 startActivity(mainIntent)
                 finish()
             }

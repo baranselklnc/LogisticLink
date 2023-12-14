@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="textColor">#202C39</color>
+    <color name="buttonColor">#58585A</color>
+    <color name="brandColor">#F39459</color>
 </resources>

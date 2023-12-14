@@ -13,6 +13,12 @@
         android:theme="@style/Theme.LogisticLink"
         tools:targetApi="31">
         <activity
+            android:name=".CustomerLoginScreen"
+            android:exported="false" />
+        <activity
+            android:name=".CarrierLoginScreen"
+            android:exported="false" />
+        <activity
             android:name=".ChooseScreen"
             android:exported="false" />
         <activity
