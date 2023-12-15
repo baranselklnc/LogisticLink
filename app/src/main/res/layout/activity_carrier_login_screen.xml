@@ -13,7 +13,7 @@
         android:layout_height="90dp"
         android:fontFamily="@font/alata"
         android:text="Kaydol"
-        android:textColor="#58585A"
+        android:textColor="#9EF29359"
         android:textSize="44sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,8 +23,8 @@
         app:layout_constraintVertical_bias="0.173" />
 
     <EditText
+        android:textColorHint="#9EF29359"
         android:id="@+id/editTextText"
-        style="@style/CustomEditTextStyle"
         android:layout_width="244dp"
         android:layout_height="48dp"
         android:ems="10"
@@ -37,7 +37,8 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.359" />
+        app:layout_constraintVertical_bias="0.359"
+      />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
@@ -46,6 +47,7 @@
         android:ems="10"
         android:fontFamily="@font/alata"
 
+        android:textColorHint="#9EF29359"
 
         android:hint="E-mail"
         android:inputType="textEmailAddress"
@@ -60,6 +62,7 @@
         android:id="@+id/editTextTextPassword2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColorHint="#9EF29359"
 
         android:ems="10"
         android:fontFamily="@font/alata"
@@ -75,6 +78,7 @@
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="wrap_content"
+        android:textColorHint="#9EF29359"
 
         android:layout_height="wrap_content"
         android:ems="10"
@@ -95,6 +99,7 @@
         android:ems="10"
         android:fontFamily="@font/alata"
         android:hint="Soyad"
+        android:textColorHint="#9EF29359"
 
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -105,12 +110,13 @@
         app:layout_constraintVertical_bias="0.467" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonKaydol"
         android:layout_width="352dp"
         android:layout_height="47dp"
-        android:background="@color/buttonColor"
+        android:background="@color/brandColor"
         android:backgroundTint="#F29359"
         android:fontFamily="@font/alata"
+        android:clickable="true"
         android:text="Kaydol"
         android:textColor="#FFFFFF"
         android:textColorHighlight="#F29359"
