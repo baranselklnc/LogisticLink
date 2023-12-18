@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/roadback"
-    tools:context=".CarrierLoginScreen">
+    tools:context=".CarrierRegisterScreen">
 
     <TextView
         android:id="@+id/textView"
@@ -24,13 +24,13 @@
 
     <EditText
         android:textColorHint="#9EF29359"
-        android:id="@+id/editTextText"
+        android:id="@+id/carrierName"
         android:layout_width="244dp"
         android:layout_height="48dp"
         android:ems="10"
         android:fontFamily="@font/alata"
         android:hint="Ad"
-        android:inputType="text"
+        android:inputType="textCapSentences"
         android:textColorHighlight="#56F29359"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,16 +39,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.359"
       />
-
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/carrierSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="@font/alata"
-
+        android:hint="Soyad"
         android:textColorHint="#9EF29359"
+        android:inputType="textCapSentences"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.467" />
 
+    <EditText
+        android:id="@+id/carrierEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/alata"
+        android:textColorHint="#9EF29359"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,7 +72,7 @@
         app:layout_constraintVertical_bias="0.557" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/carrierPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColorHint="#9EF29359"
@@ -74,16 +87,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.664" />
-
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/carrierPasswordCheck"
         android:layout_width="wrap_content"
         android:textColorHint="#9EF29359"
-
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="@font/alata"
-        android:hint="*******"
+        android:hint="Password"
+        app:passwordToggleEnabled="true"
+
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,22 +105,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.772" />
 
-    <EditText
-        android:id="@+id/editTextText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:fontFamily="@font/alata"
-        android:hint="Soyad"
-        android:textColorHint="#9EF29359"
 
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
 
     <Button
         android:id="@+id/buttonKaydol"
