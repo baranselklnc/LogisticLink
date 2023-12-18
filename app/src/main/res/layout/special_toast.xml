@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="16dp"
-    android:background="#5CE0F7FA">
+    android:background="#58585A">
 
     <ImageView
         android:id="@+id/customImageView"
