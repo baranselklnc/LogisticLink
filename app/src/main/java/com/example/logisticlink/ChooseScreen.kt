@@ -3,7 +3,6 @@ package com.example.logisticlink
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import com.example.logisticlink.databinding.ActivityChooseScreenBinding
 
 class ChooseScreen : AppCompatActivity() {
@@ -16,11 +15,11 @@ class ChooseScreen : AppCompatActivity() {
 
     binding.carrierAvatar.setOnClickListener{
 
-        val intent = Intent(this, CarrierLoginScreen::class.java)
+        val intent = Intent(this, CarrierRegisterScreen::class.java)
         startActivity(intent)
     }
         binding.customerAvatar.setOnClickListener{
-            val intent = Intent(this, CustomerLoginScreen::class.java)
+            val intent = Intent(this, CustomerRegisterScreen::class.java)
             startActivity(intent)
         }
 
