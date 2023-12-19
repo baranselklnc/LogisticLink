@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".CustomerRegisterMailScreen"
     android:background="@drawable/customerbackname"
-    tools:context=".CustomerRegisterScreen">
-
+    >
     <EditText
-        android:id="@+id/customerRegisterNameEdit"
+        android:id="@+id/customerRegisterMailEdit"
         android:layout_width="256dp"
         android:layout_height="58dp"
         android:ems="10"
         android:fontFamily="@font/alata"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:textSize="26dp"
         android:textColor="#F7F29359"
         android:textStyle="bold"
@@ -25,12 +25,12 @@
         app:layout_constraintVertical_bias="0.793" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="364dp"
-        android:layout_height="66dp"
+        android:id="@+id/customerNameforMail"
+        android:layout_width="327dp"
+        android:layout_height="118dp"
         android:fontFamily="@font/alata"
         android:gravity="left"
-        android:text="Merhaba, sana nasıl hitap edebiliriz ?"
+        android:maxLines="2"
         android:textColor="@color/brandColor"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -39,7 +39,7 @@
         app:layout_constraintHorizontal_bias="0.319"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintVertical_bias="0.568" />
 
     <ImageButton
         android:id="@+id/nextButton"
@@ -53,13 +53,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.789" />
-
     <TextView
-        android:id="@+id/nullErrorText"
+        android:id="@+id/nullErrorMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
-        android:text="Lütfen adınızı giriniz"
+        android:text="Lütfen geçerli bir e-posta adresi giriniz"
         android:textColor="@color/weak"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,6 +67,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.847" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
