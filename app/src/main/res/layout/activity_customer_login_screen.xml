@@ -38,16 +38,16 @@
 
     <Button
         android:id="@+id/carrierLoginButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="312dp"
+        android:layout_height="51dp"
+        android:background="@drawable/rounded_background"
         android:text="Giriş Yap"
-        android:background="@color/brandColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.786" />
+        app:layout_constraintVertical_bias="0.791" />
 
     <TextView
         android:id="@+id/forgetPasswordText"
