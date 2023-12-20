@@ -10,15 +10,16 @@
 
     <ImageView
         android:id="@+id/customImageView"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/logisticlinklogo"
-    android:layout_marginEnd="8dp"/>
+        android:layout_width="28dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/logisticlinklogo" />
 
     <TextView
         android:id="@+id/dispatchText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:text="Yönlendirme Yapılıyor..."
     android:textColor="@color/brandColor"/>
 
