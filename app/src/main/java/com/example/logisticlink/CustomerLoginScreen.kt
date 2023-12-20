@@ -11,6 +11,7 @@ class CustomerLoginScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityCustomerLoginScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CustomToastManager.showCustomToast(this,"E-posta ve şifrenizi girerek oturum açabilirsiniz")
 
         val carrierLoginButton=binding.carrierLoginButton
 carrierLoginButton.setOnClickListener {
