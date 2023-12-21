@@ -4,14 +4,11 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import com.example.logisticlink.databinding.ActivityCustomerRegisterPasswordCheckScreenBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -25,6 +22,8 @@ class CustomerRegisterPasswordCheckScreen : AppCompatActivity() {
         val passwordEqualError=binding.passwordEqualError
         val customerPasswordCheck=binding.customerPasswordCheck
         val lottieTruck=binding.lottieTruck
+        val email = intent.getStringExtra("email")
+
         nextButton.setOnClickListener {
             hideKeyboard()
             val password = customerPasswordCheck.text.toString().trim()
@@ -39,11 +38,11 @@ class CustomerRegisterPasswordCheckScreen : AppCompatActivity() {
                 val scope = CoroutineScope(Dispatchers.Main)
 
                 lottieTruck.playAnimation()
-                // CoroutineScope'u kullanarak bir coroutine başlat
                 scope.launch {
-                    delay(3000) // 5 saniye bekle
-                    val intent = Intent(this@CustomerRegisterPasswordCheckScreen, CustomerLoginScreen::class.java)
+                    delay(3000)
+                    val intent=Intent(this@CustomerRegisterPasswordCheckScreen,CustomerLoginScreen::class.java)
                     startActivity(intent)
+                    finish()
 
                 }
                 // CoroutineScope'u iptal et
@@ -54,6 +53,9 @@ class CustomerRegisterPasswordCheckScreen : AppCompatActivity() {
 
         }
     }
+
+
+
     private fun hideKeyboard() {
         val view: View? = currentFocus
         if (view != null) {
