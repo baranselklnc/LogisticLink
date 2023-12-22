@@ -110,7 +110,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="@font/alata"
-        android:hint="Password"
+        android:hint="*******"
         android:inputType="textPassword"
         android:textColorHint="#9EF29359"
 
