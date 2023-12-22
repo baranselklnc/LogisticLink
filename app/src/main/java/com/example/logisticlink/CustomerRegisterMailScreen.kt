@@ -37,13 +37,17 @@ class CustomerRegisterMailScreen : AppCompatActivity() {
             if (email.isEmpty() || (!email.contains(firstExpression) || !email.contains(secondExpression))) {
                 nullErrorMail.visibility = View.VISIBLE
             } else {
+
+                (application as MyApplication).sharedMail=email
+
                 // Intent'i sadece bir kez başlat
                 val intent = Intent(this, CustomerRegisterPasswordScreen::class.java)
-                intent.putExtra("email",email)
                 startActivity(intent)
 
             }
+
         }
+
     }
 
     private fun hideKeyboard() {
