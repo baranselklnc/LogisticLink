@@ -3,8 +3,11 @@ package com.example.logisticlink
 import android.app.Application
 
 class MyApplication : Application() {
+    var sharedPassword:String?=null
+    var sharedMail:String?=null
     override fun onCreate() {
         super.onCreate()
+
 
         // Uygulama başladığında yapılacak işlemleri buraya ekleyebilirsiniz.
 
