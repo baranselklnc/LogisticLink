@@ -21,9 +21,10 @@ class CustomerLoginScreen : AppCompatActivity() {
         )
         val testText = binding.testText
         val carrierLoginButton = binding.carrierLoginButton
-        val userPassword = intent.getStringExtra("password")
-        val loginmail = intent.getStringExtra("email")
-        testText.text = "Şifre= $userPassword ,Eposta $loginmail "
+        val receivedMail=(application as MyApplication).sharedMail
+        val receivedPassword=(application as MyApplication).sharedPassword
+
+       testText.text = "$receivedMail,$receivedPassword "
 
         carrierLoginButton.setOnClickListener {
 
