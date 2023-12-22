@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.core.view.isVisible
 import com.example.logisticlink.databinding.ActivityCustomerRegisterPasswordCheckScreenBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,6 +34,8 @@ class CustomerRegisterPasswordCheckScreen : AppCompatActivity() {
                 passwordEqualError.visibility=View.VISIBLE
             }
             else{
+
+                nextButton.isVisible=false
                 (application as MyApplication).sharedPassword=password
                 val scope = CoroutineScope(Dispatchers.Main)
 
