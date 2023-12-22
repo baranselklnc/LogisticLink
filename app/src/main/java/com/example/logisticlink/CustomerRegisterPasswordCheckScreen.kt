@@ -22,7 +22,6 @@ class CustomerRegisterPasswordCheckScreen : AppCompatActivity() {
         val passwordEqualError=binding.passwordEqualError
         val customerPasswordCheck=binding.customerPasswordCheck
         val lottieTruck=binding.lottieTruck
-        val email = intent.getStringExtra("email")
 
         nextButton.setOnClickListener {
             hideKeyboard()
@@ -34,7 +33,7 @@ class CustomerRegisterPasswordCheckScreen : AppCompatActivity() {
                 passwordEqualError.visibility=View.VISIBLE
             }
             else{
-
+                (application as MyApplication).sharedPassword=password
                 val scope = CoroutineScope(Dispatchers.Main)
 
                 lottieTruck.playAnimation()
@@ -48,6 +47,7 @@ class CustomerRegisterPasswordCheckScreen : AppCompatActivity() {
                 // CoroutineScope'u iptal et
                 // Bu, eğer activity yoksa ya da işlem tamamlandıysa, coroutine'u iptal eder
  //               scope.onDestroy() // Eğer bu metot mevcut değilse, kullanıcıya bağlı olarak iptal etmelisiniz.
+
             }
 
 
