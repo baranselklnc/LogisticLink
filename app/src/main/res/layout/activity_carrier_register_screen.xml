@@ -23,7 +23,6 @@
         app:layout_constraintVertical_bias="0.173" />
 
     <EditText
-        android:textColorHint="#9EF29359"
         android:id="@+id/carrierName"
         android:layout_width="244dp"
         android:layout_height="48dp"
@@ -32,13 +31,14 @@
         android:hint="Ad"
         android:inputType="textCapSentences"
         android:textColorHighlight="#56F29359"
+        android:textColorHint="#9EF29359"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.359"
-      />
+        app:layout_constraintVertical_bias="0.336" />
+
     <EditText
         android:id="@+id/carrierSurname"
         android:layout_width="wrap_content"
@@ -46,14 +46,15 @@
         android:ems="10"
         android:fontFamily="@font/alata"
         android:hint="Soyad"
-        android:textColorHint="#9EF29359"
         android:inputType="textCapSentences"
+        android:textColorHint="#9EF29359"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.439" />
+
 
     <EditText
         android:id="@+id/carrierEmail"
@@ -61,32 +62,32 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="@font/alata"
-        android:textColorHint="#9EF29359"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
+        android:textColorHint="#9EF29359"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.557" />
 
-    <EditText android:id="@+id/registerCarrierPhone"
+    <EditText
+        android:id="@+id/carrierPhone"
         android:layout_width="255dp"
         android:layout_height="50dp"
         android:ems="10"
-        android:textColorHint="#9EF29359"
-        android:hint="Telefon"
         android:fontFamily="@font/alata"
+        android:hint="Tel : (5XX) XXX XX XX"
         android:inputType="phone"
         android:maxLength="10"
+        android:textColorHint="#9EF29359"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.649" />
-
+        app:layout_constraintVertical_bias="0.662" />
 
     <EditText
         android:id="@+id/carrierPassword"
@@ -99,10 +100,11 @@
         android:textColorHint="#9EF29359"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.747" />
+        app:layout_constraintVertical_bias="0.766"
+        app:passwordToggleEnabled="true"/>
 
     <EditText
         android:id="@+id/carrierPasswordCheck"
@@ -116,10 +118,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.847"
+        app:layout_constraintVertical_bias="0.87"
         app:passwordToggleEnabled="true" />
 
     <Button
@@ -128,8 +130,8 @@
         android:layout_height="47dp"
         android:background="@color/brandColor"
         android:backgroundTint="#F29359"
-        android:fontFamily="@font/alata"
         android:clickable="true"
+        android:fontFamily="@font/alata"
         android:text="Kaydol"
         android:textColor="#FFFFFF"
         android:textColorHighlight="#F29359"
@@ -141,8 +143,128 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.945"
+        app:layout_constraintVertical_bias="0.976"
         app:strokeColor="#F29359" />
+
+    <TextView
+        android:id="@+id/nameNullTextError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:text="Ad alanı boş bırakılamaz"
+        android:textColor="@color/weak"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.318"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.392" />
+
+    <TextView
+        android:id="@+id/surnameNullTextError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:text="Soyad alanı boş bırakılamaz"
+        android:textColor="@color/weak"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.343"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.492" />
+
+    <TextView
+        android:id="@+id/nullPasswordError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:text="Şifre alanı boş bırakılamaz"
+        android:textColor="@color/weak"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.298"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.806" />
+
+    <TextView
+        android:id="@+id/notEqualPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:text="Şifreler uyuşmuyor"
+        android:textColor="@color/weak"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.242"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.806" />
+
+    <TextView
+        android:id="@+id/notEqualPassword2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:text="Şifreler uyuşmuyor"
+        android:textColor="@color/weak"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.242"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.906" />
+
+    <TextView
+        android:id="@+id/nullPasswordError2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:text="Şifre alanı boş bırakılamaz"
+        android:textColor="@color/weak"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.298"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.906" />
+
+    <TextView
+        android:id="@+id/mailErrorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:text="Lütfen mail adresinizi doğru girdiğinizden emin olun"
+        android:textColor="@color/weak"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.605" />
+
+    <TextView
+        android:id="@+id/phoneError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:text="Lütfen geçerli bir numara giriniz"
+        android:textColor="@color/weak"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.706" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
