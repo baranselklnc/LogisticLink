@@ -31,7 +31,7 @@
         android:fontFamily="@font/alata"
         android:gravity="left"
         android:text="Merhaba, sana nasıl hitap edebiliriz ?"
-        android:textColor="@color/brandColor"
+        android:textColor="#F7F29359"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
