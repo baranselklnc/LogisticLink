@@ -18,7 +18,7 @@ class splashScreen : AppCompatActivity() {
 
         Glide.with(this)
             .asGif()
-            .load(R.raw.splashscreenpro)
+            .load(R.raw.newsplash)
             .into(imageView)
 
         object : CountDownTimer(SPLASH_DELAY, 1000) {
