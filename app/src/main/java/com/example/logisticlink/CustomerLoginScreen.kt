@@ -1,10 +1,13 @@
 package com.example.logisticlink
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -36,6 +39,11 @@ class CustomerLoginScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCustomerLoginScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.root.setOnTouchListener { _, _ ->
+            // Klavyeyi kapat
+            klavyeyiKapat()
+            false // Dokunma olayının işlenmediğini belirtmek için false döndürün
+        }
 
         CustomToastManager.showCustomToast(
             this,
@@ -49,19 +57,20 @@ class CustomerLoginScreen : AppCompatActivity() {
 
         val receivedMail=(application as MyApplication).sharedMail
         val receivedPassword=(application as MyApplication).sharedPassword
+        val receivedCarrierMail=(application as MyApplication).sharedCarrierMail
+        val receivedCarrierPassword=(application as MyApplication).sharedCarrierPassword
+
 
         carrierLoginButton.setOnClickListener {
-
+            klavyeyiKapat()
             val mail =carrierLoginMail.text.toString()
             val password=carrierLoginPassword.text.toString()
-            if (mail!=receivedMail || password!=receivedPassword )
-            {
-                CustomToastManager.showCustomToast(this,"Lütfen kullanıcı adı veya şifrenizi kontrol edin.")
-            }
-            else{
+            if ((receivedCarrierMail != mail || password != receivedCarrierPassword) &&
+                (mail != receivedMail || password != receivedPassword)) {
+                CustomToastManager.showCustomToast(this, "Lütfen kullanıcı adı veya şifrenizi kontrol edin.")
+            } else {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-
             }
 
             testText.text = "$receivedMail,$receivedPassword "
@@ -73,4 +82,11 @@ class CustomerLoginScreen : AppCompatActivity() {
 
 
         }
+    private fun klavyeyiKapat() {
+        val view: View? = currentFocus
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
     }
