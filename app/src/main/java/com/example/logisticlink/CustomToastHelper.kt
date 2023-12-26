@@ -31,7 +31,7 @@ class CustomToastHelper(private val context: Context) {
         val image = layout.findViewById<ImageView>(R.id.customImageView)
 
         val toast = Toast(context)
-        toast.duration = Toast.LENGTH_SHORT
+        toast.duration = Toast.LENGTH_LONG
         toast.view = layout
         toast.show()
     }
