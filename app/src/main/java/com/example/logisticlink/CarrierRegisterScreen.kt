@@ -4,20 +4,20 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
+import com.example.logisticlink.CustomToastManager
+import com.example.logisticlink.CustomerLoginScreen
+import com.example.logisticlink.MyApplication
 import com.example.logisticlink.databinding.ActivityCarrierRegisterScreenBinding
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import okhttp3.*
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import java.io.IOException
 
 class CarrierRegisterScreen : AppCompatActivity() {
@@ -51,11 +51,8 @@ class CarrierRegisterScreen : AppCompatActivity() {
         val notEqualPassword2 = binding.notEqualPassword2
 
         val buttonKaydol = binding.buttonKaydol
-        val firstExpression = "@"
-        val secondExpression = ".com"
 
         buttonKaydol.setOnClickListener {
-            klavyeyiKapat()
             val name = carrierName.text.toString().trim()
             val surname = carrierSurname.text.toString().trim()
             val mail = carrierMail.text.toString().trim()
@@ -63,87 +60,63 @@ class CarrierRegisterScreen : AppCompatActivity() {
             val password = carrierPassword.text.toString().trim()
             val passwordCheck = carrierPasswordCheck.text.toString().trim()
 
-            if (name.isEmpty()) {
-                nameNullTextError.isVisible = true
-                return@setOnClickListener
-            }
-            if (surname.isEmpty()) {
-                surnameNullTextError.isVisible = true
-                return@setOnClickListener
-            }
-            if (mail.isEmpty() || (!mail.contains(firstExpression) || !mail.contains(secondExpression))) {
-                mailErrorText.isVisible = true
-                return@setOnClickListener
-            }
-            if (phone.isEmpty() || !phone.startsWith("5")) {
-                phoneError.isVisible = true
-                return@setOnClickListener
-            }
-            if (password.isEmpty()) {
-                nullPasswordError.isVisible = true
-                return@setOnClickListener
-            }
-            if (passwordCheck.isEmpty()) {
-                nullPasswordError2.isVisible = true
-                return@setOnClickListener
-            }
-            if (password != passwordCheck) {
-                notEqualPassword.isVisible = true
-                notEqualPassword2.isVisible = true
-                return@setOnClickListener
+            if (isValidInput(name, surname, mail, phone, password, passwordCheck)) {
+                // Coroutine'i başlat
+                launchCarrierRegisterTask(name, surname, mail, phone, password, passwordCheck)
             } else {
-                GlobalScope.launch(Dispatchers.IO) {
-                    try {
-                        val client = OkHttpClient()
-
-                        val formBody = FormBody.Builder()
-                            .add("firstName", name)
-                            .add("lastName", surname)
-                            .add("email", mail)
-                            .add("password", password)
-                            .build()
-
-                        val request = Request.Builder()
-                            .url("http://localhost:7241/api/auth/register")
-                            .post(formBody)
-                            .build()
-
-                        val response = client.newCall(request).execute()
-
-                        if (response.isSuccessful) {
-                            val data = response.body?.string()
-                            println("Response Data: $data")
-
-                            runOnUiThread {
-                                (application as MyApplication).sharedCarrierPassword = passwordCheck
-                                (application as MyApplication).sharedCarrierMail = mail
-                                val intent = Intent(
-                                    this@CarrierRegisterScreen,
-                                    CustomerLoginScreen::class.java
-                                )
-                                startActivity(intent)
-                            }
-                        } else {
-                            val errorResponse = response.body?.string() ?: "Unknown Error"
-                            println("Error Response: $errorResponse")
-
-                            runOnUiThread {
-                                showCustomToast(
-                                    this@CarrierRegisterScreen,
-                                    "Hata: $errorResponse"
-                                )
-                            }
-                        }
-                    } catch (exception: Exception) {
-                        exception.printStackTrace()
-
-                        runOnUiThread {
-                            showCustomToast(this@CarrierRegisterScreen, "Hata: ${exception.message}")
-                        }
-                    }
-                }
+                CustomToastManager.showCustomToast(this, "Girdiğiniz bilgiler hatalı")
             }
         }
+    }
+
+    private fun isValidInput(
+        name: String,
+        surname: String,
+        mail: String,
+        phone: String,
+        password: String,
+        passwordCheck: String
+    ): Boolean {
+        if (name.isEmpty()) {
+            binding.nameNullTextError.visibility = View.VISIBLE
+            return false
+        }
+
+        if (surname.isEmpty()) {
+            binding.surnameNullTextError.visibility = View.VISIBLE
+            return false
+        }
+
+        val firstExpression = "@"
+        val secondExpression = ".com"
+
+        if (mail.isEmpty() || (!mail.contains(firstExpression) || !mail.contains(secondExpression))) {
+            binding.mailErrorText.visibility = View.VISIBLE
+            return false
+        }
+
+        if (phone.isEmpty() || !phone.startsWith("5")) {
+            binding.phoneError.visibility = View.VISIBLE
+            return false
+        }
+
+        if (password.isEmpty()) {
+            binding.nullPasswordError.visibility = View.VISIBLE
+            return false
+        }
+
+        if (passwordCheck.isEmpty()) {
+            binding.nullPasswordError2.visibility = View.VISIBLE
+            return false
+        }
+
+        if (password != passwordCheck) {
+            binding.notEqualPassword.visibility = View.VISIBLE
+            binding.notEqualPassword2.visibility = View.VISIBLE
+            return false
+        }
+
+        return true
     }
 
     private fun klavyeyiKapat() {
@@ -154,19 +127,57 @@ class CarrierRegisterScreen : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("MissingInflatedId")
-    fun showCustomToast(context: Context, message: String) {
-        val inflater =
-            context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val layout = inflater.inflate(R.layout.special_toast, null)
-        val text = layout.findViewById<TextView>(R.id.dispatchText)
-        text.text = message
+    @SuppressLint("SuspiciousIndentation")
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun launchCarrierRegisterTask(
+        name: String,
+        surname: String,
+        mail: String,
+        phone: String,
+        password: String,
+        passwordCheck: String
+    ) {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val client = OkHttpClient()
 
-        val image = layout.findViewById<ImageView>(R.id.customImageView)
+                val formBody = FormBody.Builder()
+                    .add("FirstName", name)
+                    .add("LastName", surname)
+                    .add("Email", mail)
+                    .add("Password", password)
+                    .build()
 
-        val toast = Toast(context)
-        toast.duration = Toast.LENGTH_SHORT
-        toast.view = layout
-        toast.show()
+                val request = Request.Builder()
+                    .url("http://172.17.112.1:7241/api/auth/register")
+                    .post(formBody)
+                    .build()
+                    println("İşlem başarılı.......")
+                val response = client.newCall(request).execute()
+
+                if (response.isSuccessful) {
+                    runOnUiThread {
+                        (application as MyApplication).sharedCarrierPassword =
+                            binding.carrierPasswordCheck.text.toString().trim()
+                        (application as MyApplication).sharedCarrierMail =
+                            binding.carrierEmail.text.toString().trim()
+                        val intent = Intent(this@CarrierRegisterScreen, CustomerLoginScreen::class.java)
+                        startActivity(intent)
+                    }
+                } else {
+                    runOnUiThread {
+                        CustomToastManager.showCustomToast(
+                            this@CarrierRegisterScreen,
+                            "Hata: Kayıt başarısız, lütfen tekrar deneyin."
+                        )
+                    }
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
     }
 }
+
+
+
