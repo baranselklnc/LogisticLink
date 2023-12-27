@@ -15,14 +15,23 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import okhttp3.FormBody
 import okhttp3.OkHttpClient
-import okhttp3.Request
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
 class CarrierRegisterScreen : AppCompatActivity() {
 
     private lateinit var binding: ActivityCarrierRegisterScreenBinding
+    private val apiService by lazy {
+        // Retrofit örnek konfigürasyon
+        Retrofit.Builder()
+            .baseUrl("http://192.168.2.74:8091/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(OkHttpClient())
+            .build()
+            .create(ApiService::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,65 +78,6 @@ class CarrierRegisterScreen : AppCompatActivity() {
         }
     }
 
-    private fun isValidInput(
-        name: String,
-        surname: String,
-        mail: String,
-        phone: String,
-        password: String,
-        passwordCheck: String
-    ): Boolean {
-        if (name.isEmpty()) {
-            binding.nameNullTextError.visibility = View.VISIBLE
-            return false
-        }
-
-        if (surname.isEmpty()) {
-            binding.surnameNullTextError.visibility = View.VISIBLE
-            return false
-        }
-
-        val firstExpression = "@"
-        val secondExpression = ".com"
-
-        if (mail.isEmpty() || (!mail.contains(firstExpression) || !mail.contains(secondExpression))) {
-            binding.mailErrorText.visibility = View.VISIBLE
-            return false
-        }
-
-        if (phone.isEmpty() || !phone.startsWith("5")) {
-            binding.phoneError.visibility = View.VISIBLE
-            return false
-        }
-
-        if (password.isEmpty()) {
-            binding.nullPasswordError.visibility = View.VISIBLE
-            return false
-        }
-
-        if (passwordCheck.isEmpty()) {
-            binding.nullPasswordError2.visibility = View.VISIBLE
-            return false
-        }
-
-        if (password != passwordCheck) {
-            binding.notEqualPassword.visibility = View.VISIBLE
-            binding.notEqualPassword2.visibility = View.VISIBLE
-            return false
-        }
-
-        return true
-    }
-
-    private fun klavyeyiKapat() {
-        val view: View? = currentFocus
-        if (view != null) {
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.windowToken, 0)
-        }
-    }
-
-    @SuppressLint("SuspiciousIndentation")
     @OptIn(DelicateCoroutinesApi::class)
     private fun launchCarrierRegisterTask(
         name: String,
@@ -139,28 +89,12 @@ class CarrierRegisterScreen : AppCompatActivity() {
     ) {
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val client = OkHttpClient()
-
-                val formBody = FormBody.Builder()
-                    .add("FirstName", name)
-                    .add("LastName", surname)
-                    .add("Email", mail)
-                    .add("Password", password)
-                    .build()
-
-                val request = Request.Builder()
-                    .url("http://172.17.112.1:7241/api/auth/register")
-                    .post(formBody)
-                    .build()
-                    println("İşlem başarılı.......")
-                val response = client.newCall(request).execute()
+                val response = apiService.registerCarrier(name, surname, mail, password).execute()
 
                 if (response.isSuccessful) {
                     runOnUiThread {
-                        (application as MyApplication).sharedCarrierPassword =
-                            binding.carrierPasswordCheck.text.toString().trim()
-                        (application as MyApplication).sharedCarrierMail =
-                            binding.carrierEmail.text.toString().trim()
+                        (application as MyApplication).sharedCarrierPassword = passwordCheck.trim()
+                        (application as MyApplication).sharedCarrierMail = mail.trim()
                         val intent = Intent(this@CarrierRegisterScreen, CustomerLoginScreen::class.java)
                         startActivity(intent)
                     }
@@ -177,7 +111,67 @@ class CarrierRegisterScreen : AppCompatActivity() {
             }
         }
     }
+    private fun isValidInput(
+        name: String,
+        surname: String,
+        mail: String,
+        phone: String,
+        password: String,
+        passwordCheck: String
+    ): Boolean {
+        var isValid = true
+
+        if (name.isEmpty()) {
+            binding.nameNullTextError.visibility = View.VISIBLE
+            isValid = false
+        }
+
+        if (surname.isEmpty()) {
+            binding.surnameNullTextError.visibility = View.VISIBLE
+            isValid = false
+        }
+
+        val firstExpression = "@"
+        val secondExpression = ".com"
+
+        if (mail.isEmpty() || (!mail.contains(firstExpression) || !mail.contains(secondExpression))) {
+            binding.mailErrorText.visibility = View.VISIBLE
+            isValid = false
+        }
+
+        if (phone.isEmpty() || !phone.startsWith("5")) {
+            binding.phoneError.visibility = View.VISIBLE
+            isValid = false
+        }
+
+        if (password.isEmpty()) {
+            binding.nullPasswordError.visibility = View.VISIBLE
+            isValid = false
+        }
+
+        if (passwordCheck.isEmpty()) {
+            binding.nullPasswordError2.visibility = View.VISIBLE
+            isValid = false
+        }
+
+        if (password != passwordCheck) {
+            binding.notEqualPassword.visibility = View.VISIBLE
+            binding.notEqualPassword2.visibility = View.VISIBLE
+            isValid = false
+        }
+
+        return isValid
+    }
+
+
+    private fun klavyeyiKapat() {
+        val view: View? = currentFocus
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
+
+    // Diğer fonksiyonlar burada
 }
-
-
-
